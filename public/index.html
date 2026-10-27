@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>💜мир Киры — планировщик дня</title>
+<meta name="description" content="Планировщик распорядка дня Киры: свой план для каждого дня недели. Время можно менять, новые занятия добавляются в пару шагов, всё сохраняется.">
+<meta property="og:title" content="💜мир Киры — планировщик дня">
+<meta property="og:description" content="Расписание по дням недели: подъём, завтрак, школа, музыкальная школа, репетитор, домашние задания, сон. Время можно менять, всё сохраняется.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="hero__kicker">Распорядок дня по дням недели</p>
+      <h1 class="hero__title">💜мир Киры</h1>
+      <img class="hero__cat" src="stickers/kitten.jpg" alt="Котик Киры">
+      <p class="hero__sub">У каждого дня свой план. Нажми на занятие — можно поменять время или название. Новые занятия добавляются одной кнопкой, и всё сохраняется само.</p>
+      <ul class="hero__chips">
+        <li>7 дней недели</li>
+        <li>можно менять время</li>
+        <li>сохраняется после перезагрузки</li>
+      </ul>
+    </div>
+    <div class="hero__art">
+      <img src="hero.jpg" alt="Утро Киры: будильник, завтрак, рюкзак, пианино, книги и луна" width="1024" height="683">
+      <span class="hero__stickers" aria-hidden="true">
+        <img class="hero__sticker" src="stickers/kitten.jpg" alt="">
+        <img class="hero__sticker" src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+        <img class="hero__sticker" src="generated/d86c356a261af034fd0e3af139e8cfba.jpg" alt="">
+        <img class="hero__sticker" src="stickers/kitten.jpg" alt="">
+        <img class="hero__sticker" src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+      </span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="sticker-row" aria-hidden="true">
+    <img src="stickers/kitten.jpg" alt="">
+        <img src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+        <img src="generated/d86c356a261af034fd0e3af139e8cfba.jpg" alt="">
+        <img src="stickers/kitten.jpg" alt="">
+        <img src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+        <img src="generated/d86c356a261af034fd0e3af139e8cfba.jpg" alt="">
+  </p>
+
+  <nav class="days" id="days" aria-label="Дни недели"></nav>
+
+  <section class="panel">
+    <div class="panel__head">
+      <div class="panel__head-text">
+        <h2 class="panel__title" id="dayTitle">Понедельник</h2>
+        <p class="panel__meta" id="dayMeta">Нажми на занятие, чтобы изменить</p>
+      </div>
+      <div class="panel__tools">
+        <span class="badge" id="dayBadge">0 занятий</span>
+        <button class="icon-btn" id="todayBtn" type="button" title="Перейти к сегодняшнему дню" aria-label="Перейти к сегодняшнему дню">📅</button>
+        <button class="icon-btn" id="printBtn" type="button" title="Распечатать план на день" aria-label="Распечатать план на день">🖨️</button>
+      </div>
+    </div>
+    <p class="now" id="nowBox" hidden></p>
+    <div class="progress" id="progress" hidden>
+      <div class="progress__track"><span class="progress__fill" id="progressFill"></span></div>
+      <span class="progress__text" id="progressText">Сделано 0 из 0</span>
+    </div>
+    <ol class="timeline" id="timeline"></ol>
+    <p class="empty" id="empty" hidden>В этот день пока ничего не запланировано. Добавь первое занятие 👇</p>
+  </section>
+
+  <section class="week">
+    <div class="sticker sticker--wide">
+      <img class="sticker__cat" src="stickers/kitten.jpg" alt="">
+      <span class="sticker__text">
+        <span class="sticker__title">Распорядок дня на неделю</span>
+        <span class="sticker__sub">Здесь виден весь план Киры сразу — от понедельника до воскресенья</span>
+      </span>
+      <img class="sticker__cat" src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+    </div>
+    <h3 class="week__title">Вся неделя сразу</h3>
+    <p class="week__hint">Нажми на день — откроется его подробный план.</p>
+    <div class="week__tools">
+      <label class="week__tools-label" for="weekCount">Показывать задач на день</label>
+      <select class="week__tools-select" id="weekCount">
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="10">10</option>
+        <option value="99">все</option>
+      </select>
+    </div>
+    <div class="week__grid" id="week"></div>
+  </section>
+
+  <p class="sticker-row" aria-hidden="true">
+    <img src="stickers/kitten.jpg" alt="">
+        <img src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+        <img src="generated/d86c356a261af034fd0e3af139e8cfba.jpg" alt="">
+        <img src="stickers/kitten.jpg" alt="">
+        <img src="generated/932fb943f61ff7020b8bb61ff3a480ba.jpg" alt="">
+        <img src="generated/d86c356a261af034fd0e3af139e8cfba.jpg" alt="">
+  </p>
+
+  <section class="editor" id="editor">
+    <h3 class="editor__title" id="editorTitle">Добавить занятие</h3>
+    <form id="itemForm" data-storage="local" autocomplete="off">
+      <div class="editor__grid">
+        <label class="field field--time">
+          <span class="field__label">Во сколько</span>
+          <input class="field__input" type="time" id="fTime" required value="10:00">
+        </label>
+        <label class="field field--wide">
+          <span class="field__label">Что делаем</span>
+          <input class="field__input" type="text" id="fTitle" maxlength="40" required placeholder="Например, музыкальная школа">
+        </label>
+        <label class="field field--icon">
+          <span class="field__label">Значок</span>
+          <select class="field__input" id="fIcon"></select>
+        </label>
+      </div>
+      <div class="editor__actions">
+        <button class="btn btn--primary" id="saveBtn" type="submit">Добавить</button>
+        <button class="btn btn--danger" id="deleteBtn" type="button" hidden>Удалить</button>
+        <button class="btn btn--ghost" id="cancelBtn" type="button" hidden>Отмена</button>
+      </div>
+      <p class="editor__note" id="editorNote">Занятие сразу появится в расписании дня и останется после перезагрузки страницы.</p>
+    </form>
+  </section>
+
+  <div class="actions">
+    <button class="btn btn--ghost" id="resetDayBtn" type="button">Сбросить этот день</button>
+    <button class="btn btn--ghost" id="resetAllBtn" type="button">Вернуть всё как было</button>
+  </div>
+
+  <section class="transfer" aria-label="Перенос плана">
+    <h3 class="transfer__title">План на другом устройстве</h3>
+    <p class="transfer__text">Можно скачать файл с расписанием и загрузить его на другом телефоне или компьютере. Если загрузить план, он заменит текущий — сначала скажи, что хочешь поменять.</p>
+    <div class="transfer__buttons">
+      <button class="btn btn--ghost" id="exportBtn" type="button">💾 Скачать план</button>
+      <button class="btn btn--ghost" id="importBtn" type="button">📂 Загрузить план</button>
+      <input id="backupFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </section>
+
+  <p class="hint">Нажми на сердечко рядом с занятием: закрашенное сердечко — значит задание сделано, пустое — ещё не сделано. Дни недели на телефоне листаются одним пальцем. Все изменения хранятся в этом браузере — их видно и ребёнку, и родителям, и после перезагрузки страницы. Чтобы перенести план на другое устройство, воспользуйтесь кнопкой «Скачать план».</p>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="data.js"></script>
+<script src="store.js"></script>
+<script src="app.js"></script>
+<script src="week.js"></script>
+<script src="editor.js"></script>
+<script src="backup.js"></script>
+</body>
+</html>
